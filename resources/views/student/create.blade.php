@@ -9,7 +9,8 @@
 
     <h1>Create Student</h1>
 
-    <form action="{{ route('students.store') }}" method="POST">
+
+    <form action="/student" method="POST">
 
         @csrf
 
@@ -50,6 +51,18 @@
 
             <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}">
         </div>
+        
+        @if($errors->any())
+            <div>
+                <h3>Please fix the following errors:</h3>
+
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <br>
 
@@ -61,19 +74,9 @@
 
     <br>
 
+
+
     <a href="/students">Back to Students</a>
-
-    @if ($errors->any())
-        <div>
-            <h3>Please fix the following errors:</h3>
-
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
 </body>
 
